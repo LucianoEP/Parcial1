@@ -19,6 +19,12 @@
         if(e.data===2){sessionStorage.setItem(K_P,'0');}
       }
     }});
+    /* En la página de las sirenas: si se reproduce el video, se pausa la música de fondo */
+    if(document.getElementById('video-sirenas')){
+      new YT.Player('video-sirenas',{events:{onStateChange:function(e){
+        if(e.data===1){try{player.pauseVideo();sessionStorage.setItem(K_P,'0');}catch(err){}}
+      }}});
+    }
   };
   window.addEventListener('pagehide',function(){
     try{sessionStorage.setItem(K_T,player.getCurrentTime());}catch(e){}
